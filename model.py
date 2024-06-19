@@ -1,19 +1,21 @@
-import pandas as pd
-from sklearn.model_selection import KFold, train_test_split
-from sklearn.preprocessing import StandardScaler
-from tensorflow import keras
+import argparse
+
+from keras.layers import Dense, Input
 from keras.models import Sequential
-from keras.layers import Dense
+
 import joblib
 import numpy as np
+import pandas as pd
 from scipy.stats import pearsonr, spearmanr
-import argparse
+from sklearn.model_selection import KFold, train_test_split
+from sklearn.preprocessing import StandardScaler
 
 
 def build_model(input_shape):
     model = Sequential(
         [
-            Dense(64, activation="relu", input_shape=(input_shape,)),
+            Input(shape=(input_shape,)),
+            Dense(64, activation="relu"),
             Dense(64, activation="relu"),
             Dense(1),
         ]
